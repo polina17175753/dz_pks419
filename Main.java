@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.Scanner;
 
 public class Main {
@@ -8,18 +7,14 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Введите строку");
         Scanner input = new Scanner(System.in);
-        String currentWord = input.next();
+        String inputWord = input.next();
 
-        if (task1(currentWord, "кн")) {
-            System.out.println(currentWord);
-        } else {
-            System.out.println("Вхождений не найдено, или слово превышает 8 символов!");
-        }
+        System.out.println(checkValidWord(inputWord, "кн"));
 
-        int[] numbersInput = new int[10];
+        int[] inputNumbers = new int[10];
         for (int i = 0; i < 10; i++) {
-            System.out.println("Введите " + (i + 1) + " элемент массива");
-            numbersInput[i] = input.nextInt();
+            System.out.printf("Введите %d элемент массива%n", i + 1);
+            inputNumbers[i] = input.nextInt();
         }
 
         System.out.println("Введите число b");
@@ -27,16 +22,19 @@ public class Main {
         System.out.println("Введите число di");
         int di = input.nextInt();
 
-        System.out.println("Ответ = " + task2(numbersInput, b, di));
+        System.out.printf("Ответ = %f%n", calculateSum(inputNumbers, b, di));
     }
 
     //Задача 1
-    public static boolean task1(String word, String subString) {
-        return word.length() < MAX_WORD_LENGTH && word.contains(subString);
+    public static String checkValidWord(String word, String subString) {
+        if (word.length() < MAX_WORD_LENGTH && word.contains(subString)) {
+            return word;
+        }
+        return "Вхождений не найдено, или слово превышает 8 символов!";
     }
 
     //Задача 2
-    public static float task2(int[] numbersArray, int b, int di) {
+    public static float calculateSum(int[] numbersArray, int b, int di) {
         int summaUp = 0;
         int summaDown = 0;
 
